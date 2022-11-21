@@ -1,4 +1,3 @@
-import 'package:boardlez/core/ui/app_version/app_version.dart';
 import 'package:boardlez/core/ui/textfield/boardlez_text_field.dart';
 import 'package:boardlez/core/ui/theme/app_theme_data.dart';
 import 'package:boardlez/core/ui/widget_view.dart';
@@ -8,22 +7,22 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sizer/sizer.dart';
 
-class Login extends StatefulWidget {
+class SignUp extends StatefulWidget {
   final AppThemeData themeData;
 
-  const Login({required this.themeData});
+  const SignUp({required this.themeData});
 
   @override
-  _LoginController createState() => _LoginController();
+  _SignUpController createState() => _SignUpController();
 }
 
-class _LoginController extends State<Login> {
+class _SignUpController extends State<SignUp> {
   @override
-  Widget build(BuildContext context) => _LoginView(this);
+  Widget build(BuildContext context) => _SignUpView(this);
 }
 
-class _LoginView extends WidgetView<Login, _LoginController> {
-  const _LoginView(_LoginController state) : super(state);
+class _SignUpView extends WidgetView<SignUp, _SignUpController> {
+  const _SignUpView(_SignUpController state) : super(state);
 
   @override
   Widget build(BuildContext context) {
@@ -47,15 +46,34 @@ class _LoginView extends WidgetView<Login, _LoginController> {
           ),
           SizedBox(height: 5.0.h),
           Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              const BoardLezTextField(hintText: 'Email'),
+              const BoardLezTextField(hintText: 'FullName'),
               SizedBox(
                 height: 2.0.h,
               ),
+              const BoardLezTextField(hintText: 'Email Address'),
+              SizedBox(
+                height: 2.0.h,
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(
+                    width: 30.0.w,
+                    child: const BoardLezTextField(hintText: '+65 Singapore'),
+                  ),
+                  SizedBox(width: 2.0.w),
+                  const Expanded(flex: 2, child: BoardLezTextField(hintText: 'Phone number'))
+                ],
+              ),
+              SizedBox(height: 2.0.h),
               const BoardLezTextField(hintText: 'Password'),
-              SizedBox(
-                height: 2.0.h,
-              ),
+              SizedBox(height: 2.0.h),
+              const BoardLezTextField(hintText: 'Repeat Password'),
+              SizedBox(height: 2.0.h),
+              const BoardLezTextField(hintText: 'Organization Name'),
+              SizedBox(height: 2.0.h),
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
@@ -63,7 +81,7 @@ class _LoginView extends WidgetView<Login, _LoginController> {
                     child: Text(
                       'Forgot Password?',
                       textAlign: TextAlign.right,
-                      style: theme.textTheme.bodyText1,
+                      style: Theme.of(context).textTheme.bodyText1,
                     )),
               )
             ],
@@ -73,25 +91,21 @@ class _LoginView extends WidgetView<Login, _LoginController> {
           ),
           SizedBox(
             width: double.infinity,
-            child: TextButton(onPressed: () {}, child: const Text('Sign In')),
+            child: TextButton(onPressed: () {}, child: const Text('Sign Up')),
           ),
           SizedBox(
             height: 2.0.h,
           ),
-          RichText(
-            text: TextSpan(text: 'Don\' you have any account? ', style: theme.textTheme.bodyText2, children: [
-              TextSpan(
-                  text: 'Sign Up',
-                  style: theme.textTheme.bodyText1,
-                  recognizer: TapGestureRecognizer()..onTap = () => context.go('/${ScreenPaths.signUp}'))
-            ]),
-          ),
-          const Expanded(
+          Expanded(
               child: Align(
             alignment: Alignment.bottomCenter,
-            child: AppVersion(
-              version: 'v1.05(7)',
-            ),
+            child: RichText(
+                text: TextSpan(
+                    text: 'Have an account? ',
+                    style: theme.textTheme.bodyText2,
+                    children: [TextSpan(text: 'Sign In', style: theme.textTheme.bodyText1, recognizer: TapGestureRecognizer()..onTap = () {
+                      context.go(ScreenPaths.login);
+                    })])),
           ))
         ],
       ),
