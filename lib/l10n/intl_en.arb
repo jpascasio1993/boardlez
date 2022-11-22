@@ -1,0 +1,15 @@
+{
+    "appName": "BoardLez",
+    "email": "Email",
+    "password": "Password",
+    "noAccount": "Don't you have any account?",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "forgotPassword": "Forgot Password?",
+    "fullName": "FullName",
+    "emailAddress": "Email Address",
+    "phoneNumber": "phoneNumber",
+    "repeatPassword": "Repeat Password",
+    "organizationName": "Organization Name",
+    "hasAccount": "Have an account?"
+}
