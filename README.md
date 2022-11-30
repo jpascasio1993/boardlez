@@ -1,6 +1,6 @@
 # boardlez
 
-A new Flutter project.
+Sample Flutter project.
 
 ## Getting Started
 
